@@ -2556,6 +2556,17 @@ DittoMetalPowder:
 .done
 	scf
 	rr c
+	
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp b
+	jr c, .cap
+	ld a, LOW(MAX_STAT_VALUE)
+	cp c
+	ret nc
+
+.cap
+	ld b, HIGH(MAX_STAT_VALUE)
+	ld c, LOW(MAX_STAT_VALUE)
 	ret
 
 BattleCommand_DamageStats:
