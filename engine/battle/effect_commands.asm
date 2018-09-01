@@ -2808,6 +2808,17 @@ SpeciesItemBoost:
 ; Double the stat
 	sla l
 	rl h
+	
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+
+.cap
+	ld h, HIGH(MAX_STAT_VALUE)
+	ld l, LOW(MAX_STAT_VALUE)
 	ret
 
 EnemyAttackDamage:
